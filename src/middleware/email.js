@@ -12,12 +12,12 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-module.exports = (email_user, subject, url, name) => {
+module.exports = (email_user, subject, name) => {
   const mailOptions = {
     from: process.env.MAIL_USERNAME,
     to: email_user,
     subject: `${subject} is your otp`,
-    text: `Hello ${name} \n Thank you for join us. Please confirm your email by clicking on the following link ${url}`,
+    text: `Hello ${name} \nThank you for join us. Your otp is ${subject}`,
   };
 
   transporter.sendMail(mailOptions, (err, data) => {

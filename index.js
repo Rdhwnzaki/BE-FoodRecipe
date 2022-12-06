@@ -5,6 +5,7 @@ const morgan = require("morgan");
 require("dotenv").config();
 const helmet = require("helmet");
 const xss = require("xss-clean");
+const upload = require("./src/middleware/upload");
 
 const mainRouter = require("./src/routes/index");
 const { resp } = require("./src/middleware/common");
@@ -24,7 +25,9 @@ app.use(xss());
 
 app.use(bodyParser.json());
 app.use("/", mainRouter);
+
 app.use("/img", express.static("./upload"));
+app.use(upload.array());
 
 app.all("*", (req, res) => {
   resp(res, 404, false, "404 Not Found");

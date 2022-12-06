@@ -39,13 +39,8 @@ const userController = {
     try {
       const result = await create(data);
       if (result) {
-        const verifUrl = `http://${Host}:${Port}/users/${req.body.email_user}/${otp}`;
-        const sendEmail = email(
-          data.email_user,
-          otp,
-          verifUrl,
-          data.fullname_user
-        );
+        // const verifUrl = `http://${Host}:${Port}/users/${req.body.email_user}/${otp}`;
+        const sendEmail = email(data.email_user, otp, data.fullname_user);
         // eslint-disable-next-line eqeqeq
         if (sendEmail == "email not sent!") {
           return response(res, 404, false, null, "register fail");
