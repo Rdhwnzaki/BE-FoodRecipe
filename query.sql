@@ -1,4 +1,4 @@
--- Active: 1669812598881@@localhost@5432@food
+-- Active: 1673629894075@@pijardb-do-user-13063919-0.b.db.ondigitalocean.com@25060@food-ridhwan
 CREATE TABLE users(
     id_user VARCHAR PRIMARY KEY,
     email_user VARCHAR NOT NULL,
@@ -20,15 +20,23 @@ CREATE TABLE recipe(
     video VARCHAR DEFAULT NULL
 );
 
-CREATE TABLE comment(
-    id_comment SERIAL PRIMARY KEY,
-    user_id VARCHAR REFERENCES users(id_user),
-    recipe_id INT REFERENCES recipe(id_recipe)
-);
+ALTER TABLE recipe ADD user_id VARCHAR REFERENCES users(id_user);
 
 CREATE TABLE comment(
     id_comment SERIAL PRIMARY KEY,
     comment_text VARCHAR NOT NULL,
+    user_id VARCHAR REFERENCES users(id_user),
+    recipe_id INT REFERENCES recipe(id_recipe)
+);
+
+CREATE TABLE saved_recipe(
+    id_saved SERIAL PRIMARY KEY,
+    user_id VARCHAR REFERENCES users(id_user),
+    recipe_id INT REFERENCES recipe(id_recipe)
+);
+
+CREATE TABLE liked_recipe(
+    id_liked SERIAL PRIMARY KEY,
     user_id VARCHAR REFERENCES users(id_user),
     recipe_id INT REFERENCES recipe(id_recipe)
 );

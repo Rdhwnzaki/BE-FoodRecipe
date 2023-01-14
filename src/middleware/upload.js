@@ -1,6 +1,5 @@
 const multer = require("multer");
-const { response } = require("./common");
-const { resp } = require("./common");
+const path = require("path");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -12,12 +11,12 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     const uniq = Date.now() + Math.round(Math.random() * 1e9);
-    cb(null, file.fieldname + "-" + uniq + ".png");
+    cb(null, file.fieldname + "-" + uniq + path.extname(file.originalname));
   },
 });
 
 const upload = multer({
-  limits: { fileSize: 10 * 1024 ** 2 },
+  // limits: { fileSize: 10 * 1024 ** 2 },
   storage: storage,
   fileFilter: (res, file, cb) => {
     if (

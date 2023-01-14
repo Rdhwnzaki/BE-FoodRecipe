@@ -4,11 +4,7 @@ const { create, findEmail, verification } = require("../model/users");
 const { resp, response } = require("../middleware/common");
 const { generateToken, generateRefreshToken } = require("../helpers/auth");
 const email = require("../middleware/email");
-const cloudinary = require("../config/photo");
 const modelUsers = require("../model/users");
-
-const Port = process.env.PORT;
-const Host = process.env.HOST;
 
 const userController = {
   insertUsers: async (req, res) => {
@@ -79,7 +75,9 @@ const userController = {
 
     const payload = {
       email_user: users.email_user,
+      id_user: users.id_user,
     };
+    console.log(payload);
     users.token = generateToken(payload);
     users.refreshToken = generateRefreshToken(payload);
     resp(res, 200, true, users, "Login success ");
@@ -125,13 +123,16 @@ const userController = {
   },
   insertPhoto: async (req, res) => {
     try {
-      const image = await cloudinary.uploader.upload(req.file.path, {
-        folder: "food",
-      });
-      req.body.photo = image.url;
-      await modelUsers.updatePhotoUser(req.params.id_user, req.body);
+      const id_user = req.payload.id_user;
+      console.log("id_user", id_user);
+      const {
+        photo: [photo],
+      } = req.files;
+      req.body.photo = photo.path;
+      await modelUsers.updatePhotoUser(id_user, req.body);
       return response(res, 200, true, req.body, "Update Photo Success");
     } catch (err) {
+      console.log(err);
       return response(res, 404, false, err, "Update Photo Fail");
     }
   },
@@ -149,15 +150,15 @@ const userController = {
       return response(res, 404, false, err, "Change Password Fail");
     }
   },
-  getDetailUser: (req, res) => {
+  getDetailUser: async (req, res) => {
+    const user_id = req.payload.id_user;
+    console.log("id_user", user_id);
     modelUsers
-      .getDataUserById(req.params.id_user)
+      .getDataUserById(user_id)
       .then((result) =>
-        response(res, 200, true, result.rows, "Get detail users success")
+        response(res, 200, true, result.rows, "Get User Success")
       )
-      .catch((err) =>
-        response(res, 404, false, err, "Get detail users failed")
-      );
+      .catch((err) => response(res, 404, false, err, "Get User Fail"));
   },
   // forgotPassword: async (req, res) => {
   //   const {
