@@ -154,10 +154,13 @@ const recipeController = {
   },
   editRecipe: async (req, res) => {
     try {
+      const user_id = req.payload.id_user;
+      console.log("id_user", user_id);
       const {
         photo: [photo],
         video: [video],
       } = req.files;
+      console.log(req.files);
       const { title, ingredients } = req.body;
       req.body.photo = photo.path;
       req.body.video = video.path;
@@ -179,6 +182,7 @@ const recipeController = {
       );
       response(res, 200, true, result.rows, "Delete recipe success");
     } catch (err) {
+      console.log(err);
       response(res, 404, false, err, "Delete recipe fail");
     }
   },
