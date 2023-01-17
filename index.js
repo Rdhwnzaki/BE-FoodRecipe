@@ -7,6 +7,7 @@ const helmet = require("helmet");
 const xss = require("xss-clean");
 const upload = require("./src/middleware/upload");
 const path = require("path");
+const cookieParser = require("cookie-parser");
 
 const mainRouter = require("./src/routes/index");
 const { resp } = require("./src/middleware/common");
@@ -21,6 +22,7 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 app.use(morgan("dev"));
+app.use(cookieParser());
 app.use(
   helmet({
     crossOriginEmbedderPolicy: false,
