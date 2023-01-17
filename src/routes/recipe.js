@@ -6,7 +6,19 @@ const upload = require("../middleware/upload-video");
 const { protect } = require("../middleware/auth");
 
 router
-  .post("/add-recipe", protect, upload, recipeController.addRecipe)
+  .post(
+    "/add-recipe",
+    protect,
+    upload,
+    recipeController.addRecipe,
+    function (req, res) {
+      res.header(
+        "Access-Control-Allow-Origin",
+        "https://frontend-food-recipe.vercel.app"
+      );
+      res.header("Access-Control-Allow-Credentials", true);
+    }
+  )
   .get("/", recipeController.getRecipe)
   .get(`/recipe-user`, protect, recipeController.getRecipeUser)
   .get("/:id_recipe", recipeController.getDetailRecipe)
@@ -27,3 +39,8 @@ router
   .get("/search/search-recipe", recipeController.sort);
 
 module.exports = router;
+router.post("/api/users/add", function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Credentials", true);
+  UsersModel.signup(req, res);
+});
