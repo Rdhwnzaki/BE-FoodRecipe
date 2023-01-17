@@ -15,7 +15,7 @@ const app = express();
 const port = 3000;
 
 const corsOptions = {
-  origin: "https://frontend-food-recipe-rdhwnzaki.vercel.app",
+  origin: "https://frontend-food-recipe.vercel.app",
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
