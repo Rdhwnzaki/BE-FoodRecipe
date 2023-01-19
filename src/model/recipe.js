@@ -159,11 +159,10 @@ const deleteLikeRecipe = (user_id, id_liked) => {
   });
 };
 
-const editRecipes = (id_recipe, data) => {
-  const { title, ingredients, photo, video } = data;
+const editRecipes = (id_recipe, { title, ingredients, photo, video }) => {
   return new Promise((resolve, reject) => {
     Pool.query(
-      `UPDATE recipe SET title='${title}',ingredients='${ingredients}',photo='${photo}',video='${video}' WHERE id_recipe='${id_recipe}'`,
+      `UPDATE recipe SET title='${title}',ingredients='${ingredients}',photo='${photo}',video='${video}' WHERE id_recipe=${id_recipe}`,
       (err, result) => {
         if (!err) {
           resolve(result);

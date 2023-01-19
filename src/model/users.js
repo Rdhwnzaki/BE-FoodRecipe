@@ -50,6 +50,13 @@ const updatePhotoUser = (id_user, dataUsers) => {
   );
 };
 
+const updateProfile = (id_user, dataUsers) => {
+  const { email_user, fullname_user, phone } = dataUsers;
+  return Pool.query(
+    `UPDATE users SET email_user='${email_user}',fullname_user='${fullname_user}',phone='${phone}' WHERE id_user='${id_user}'`
+  );
+};
+
 const changePW = (id_user, dataUsers) => {
   const { password_user } = dataUsers;
   return Pool.query(
@@ -69,4 +76,5 @@ module.exports = {
   updatePhotoUser,
   changePW,
   getDataUserById,
+  updateProfile,
 };

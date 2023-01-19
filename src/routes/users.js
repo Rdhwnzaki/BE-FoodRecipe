@@ -11,6 +11,7 @@ router.post("/login", userController.login);
 router.post("/verif", userController.otp);
 router.get("/", protect, userController.getDetailUser);
 router.put("/update-photo", protect, upload, userController.insertPhoto);
+router.put("/update-profile", protect, upload, userController.putProfile);
 router.put("/change-password/:id_user", protect, userController.changePassword);
 // router.put("/forgot-password", protect, userController.forgotPassword);
 

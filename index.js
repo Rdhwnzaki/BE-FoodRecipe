@@ -16,7 +16,7 @@ const app = express();
 const port = 3000;
 
 const corsOptions = {
-  origin: "https://frontend-food-recipe.vercel.app",
+  origin: 'http://localhost:3001',
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
@@ -31,10 +31,16 @@ app.use(
 );
 app.use(xss());
 
-app.use(bodyParser.json());
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
+
+app.use(bodyParser.json({ limit: "50mb" }));
+// app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use("/", mainRouter);
 
 app.use("/img", express.static("./upload"));
+// app.use(upload.array());
+
 // app.use(upload.array());
 
 app.all("*", (req, res) => {

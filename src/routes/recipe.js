@@ -27,7 +27,7 @@ router
   .get("/comment/:id_recipe", recipeController.getComment)
   .post("/saved-recipe/post-saved/", protect, recipeController.addSaveRecipe)
   .get("/saved-recipe/get-saved", protect, recipeController.getSaved)
-  .put("/edit-recipe/:id_recipe", protect, upload, recipeController.editRecipe)
+  .put("/edit-recipe/:id_recipe", upload, recipeController.editRecipe)
   .delete(
     "/saved-recipe/delete/:id_saved",
     protect,
@@ -39,8 +39,3 @@ router
   .get("/search/search-recipe", recipeController.sort);
 
 module.exports = router;
-router.post("/api/users/add", function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Credentials", true);
-  UsersModel.signup(req, res);
-});

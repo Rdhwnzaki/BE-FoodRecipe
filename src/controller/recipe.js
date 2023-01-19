@@ -154,18 +154,14 @@ const recipeController = {
   },
   editRecipe: async (req, res) => {
     try {
-      const user_id = req.payload.id_user;
-      console.log("id_user", user_id);
       const {
         photo: [photo],
         video: [video],
       } = req.files;
-      console.log(req.files);
-      const { title, ingredients } = req.body;
       req.body.photo = photo.path;
       req.body.video = video.path;
-      const data = { title, ingredients, photo, video };
-      await modelRecipe.editRecipes(req.params.id_recipe, data);
+      // console.log(req.files);
+      await modelRecipe.editRecipes(req.params.id_recipe, req.body);
       return response(res, 200, true, req.body, "Update Recipe Success");
     } catch (err) {
       console.log(err);

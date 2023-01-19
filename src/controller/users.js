@@ -136,6 +136,17 @@ const userController = {
       return response(res, 404, false, err, "Update Photo Fail");
     }
   },
+  putProfile: async (req, res) => {
+    try {
+      const id_user = req.payload.id_user;
+      console.log("id_user", id_user);
+      await modelUsers.updateProfile(id_user, req.body);
+      return response(res, 200, true, req.body, "Update Profile Success");
+    } catch (err) {
+      console.log(err);
+      return response(res, 404, false, err, "Update Profile Fail");
+    }
+  },
   changePassword: async (req, res) => {
     const salt = bcrypt.genSaltSync(10);
     const password_user = bcrypt.hashSync(req.body.password_user);
