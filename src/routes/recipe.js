@@ -9,7 +9,6 @@ router
   .post(
     "/add-recipe",
     protect,
-    express.bodyParser({ limit: "10mb" }),
     upload,
     recipeController.addRecipe,
     function (req, res) {
@@ -28,12 +27,7 @@ router
   .get("/comment/:id_recipe", recipeController.getComment)
   .post("/saved-recipe/post-saved/", protect, recipeController.addSaveRecipe)
   .get("/saved-recipe/get-saved", protect, recipeController.getSaved)
-  .put(
-    "/edit-recipe/:id_recipe",
-    express.bodyParser({ limit: "10mb" }),
-    upload,
-    recipeController.editRecipe
-  )
+  .put("/edit-recipe/:id_recipe", upload, recipeController.editRecipe)
   .delete(
     "/saved-recipe/delete/:id_saved",
     protect,
