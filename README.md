@@ -1,7 +1,4 @@
-
 # Food Recipe - Backend
-
-
 
 ## Run Locally
 
@@ -28,7 +25,6 @@ Start the server
 ```bash
   npm run dev
 ```
-
 
 ## Environment Variables
 
@@ -57,12 +53,12 @@ OAUTH_CLIENT_SECRET=
 OAUTH_REFRESH_TOKEN=
 ```
 
-
 ## API Reference
+
 ### API Deploy
 
 ```http
-  https://busy-ruby-chiton-wear.cyclic.app
+  https://cautious-newt-fatigues.cyclic.app
 ```
 
 ### Users
@@ -72,6 +68,7 @@ OAUTH_REFRESH_TOKEN=
 ```http
   POST /users/login
 ```
+
 #### Body
 
 ```body
@@ -80,6 +77,7 @@ OAUTH_REFRESH_TOKEN=
      "password_user": "wanwan123"
 }
 ```
+
 #### Register
 
 ```http
@@ -96,6 +94,7 @@ OAUTH_REFRESH_TOKEN=
     "phone": "0239348"
 }
 ```
+
 #### Verification
 
 ```http
@@ -110,6 +109,7 @@ OAUTH_REFRESH_TOKEN=
     "otp":"862454"
 }
 ```
+
 #### Profile
 
 ```http
@@ -137,6 +137,7 @@ OAUTH_REFRESH_TOKEN=
     "message": "Get User Success"
 }
 ```
+
 #### Photo Profile
 
 ```http
@@ -155,6 +156,7 @@ OAUTH_REFRESH_TOKEN=
     "message": "Update Photo Success"
   }
 ```
+
 ### Recipe
 
 #### All Recipe
@@ -162,6 +164,7 @@ OAUTH_REFRESH_TOKEN=
 ```http
   GET /recipe
 ```
+
 #### Body
 
 ```body
@@ -189,6 +192,7 @@ OAUTH_REFRESH_TOKEN=
     "message": "Get recipe success"
 }
 ```
+
 #### Recipe Detail
 
 ```http
@@ -215,6 +219,7 @@ OAUTH_REFRESH_TOKEN=
     "message": "Get detail recipe success"
 }
 ```
+
 #### Recipe By User
 
 ```http
@@ -248,6 +253,7 @@ OAUTH_REFRESH_TOKEN=
     "message": "Success Get Recipe By user"
 }
 ```
+
 #### Add Recipe
 
 ```http
@@ -264,6 +270,7 @@ OAUTH_REFRESH_TOKEN=
    "video":
 }
 ```
+
 #### PUT Recipe
 
 ```http
@@ -280,6 +287,7 @@ OAUTH_REFRESH_TOKEN=
    "video":
 }
 ```
+
 #### Post Comment
 
 ```http
@@ -293,6 +301,7 @@ OAUTH_REFRESH_TOKEN=
     "comment_text":"Bagus"
 }
 ```
+
 #### GET Comment
 
 ```http
@@ -342,6 +351,7 @@ OAUTH_REFRESH_TOKEN=
     "message": "Get comment success"
 }
 ```
+
 #### POST Saved Recipe
 
 ```http
@@ -355,6 +365,7 @@ OAUTH_REFRESH_TOKEN=
     "recipe_id":1
 }
 ```
+
 #### GET Saved Recipe
 
 ```http
@@ -381,9 +392,11 @@ OAUTH_REFRESH_TOKEN=
 ```
 
 #### DELETE Saved Recipe
+
 ```http
   DELETE /recipe/saved-recipe/delete/:id_saved
 ```
+
 #### Body
 
 ```body
@@ -394,10 +407,13 @@ OAUTH_REFRESH_TOKEN=
     "message": "Delete save recipe success"
 }
 ```
+
 #### POST Liked Recipe
+
 ```http
   POST /recipe/like-recipe/post-like
 ```
+
 #### Body
 
 ```body
@@ -405,10 +421,13 @@ OAUTH_REFRESH_TOKEN=
     "recipe_id":1
 }
 ```
+
 #### GET Liked Recipe
+
 ```http
   GET /recipe/like-recipe/get-like
 ```
+
 #### Body
 
 ```body
@@ -434,10 +453,13 @@ OAUTH_REFRESH_TOKEN=
     "message": "Get like success"
 }
 ```
+
 #### DELETE Liked Recipe
+
 ```http
   DELETE /recipe/like-recipe/delete/:id_liked
 ```
+
 #### Body
 
 ```body
@@ -448,10 +470,13 @@ OAUTH_REFRESH_TOKEN=
     "message": "Delete like success"
 }
 ```
+
 #### DELETE Recipe
+
 ```http
   DELETE /recipe/delete-recipe/:id_recipe
 ```
+
 #### Body
 
 ```body
@@ -461,10 +486,13 @@ OAUTH_REFRESH_TOKEN=
     "message": "Delete recipe success"
 }
 ```
+
 #### GET Search
+
 ```http
   GET /recipe/search/search-recipe
 ```
+
 #### Body
 
 ```body
