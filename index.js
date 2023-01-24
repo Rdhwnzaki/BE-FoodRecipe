@@ -31,10 +31,10 @@ app.use(
 );
 app.use(xss());
 
-app.use(express.json({ limit: "50mb" }));
-app.use(express.urlencoded({ limit: "50mb", extended: true }));
+app.use(express.json({ limit: 52428800 }));
+app.use(express.urlencoded({ limit: 52428800, extended: true }));
 
-app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.json({ limit: 52428800 }));
 // app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use("/", mainRouter);
 
